@@ -1,27 +1,59 @@
 language: php
 
+dist: trusty
+sudo: required
+
 php:
-    - 5.3
-    - 5.4
-    - 5.5
-    - 5.6
+  - 5.4
+  - 5.5
+  - 5.6
+  - 7.0
+  - 7.1
 
 env:
   - NO_INTERACTION=1
 
-before_script:
-    - sudo apt-get install -y check
-    - git clone https://github.com/lstrojny/nanotime.git
-    - cd nanotime && ./autogen.sh && make && sudo make install && cd -
-    - ls -l /usr/local/lib
-    - phpize
-    - ./configure --with-libnanotime-prefix=/usr/local
-    - make
+git:
+  depth: 1
+
+cache:
+  apt: true
+  ccache: true
+  timeout: 691200
+  directories:
+    - $HOME/.ccache
+
+env:
+  global:
+    - ZEND_DONT_UNLOAD_MODULES=1
+    - CC="ccache gcc"
+
+before_install:
+  - phpenv config-rm xdebug.ini || true
+  - sudo ln -s /home/travis/.phpenv/versions/$(phpenv version-name)/bin/phpize /usr/bin/
+  - sudo ln -s /home/travis/.phpenv/versions/$(phpenv version-name)/bin/php-config /usr/bin/
+  - sudo apt-get update -qq
+  - sudo apt-get install -y check
+  - git clone --depth=1 -v https://github.com/lstrojny/nanotime.git
+  - (cd nanotime && ./autogen.sh && make --silent -j"$(getconf _NPROCESSORS_ONLN)" &> /dev/null && sudo make install)
+  - ls -l /usr/local/lib
+  - sudo ln -s /usr/local/lib/libnanotime-1.0.0.so.0.0.0 /usr/lib/libnanotime-1.0.0.so.0
+  - phpize
+  - ./configure --with-libnanotime-prefix=/usr/local
+  - make -j"$(getconf _NPROCESSORS_ONLN)"
+  - sudo make install
+  - echo "extension=$(pwd)/modules/nanotime.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+  - php --ri nanotime
 
 script:
-    - make test
-    - sh test-report.sh
+  - printf "n\n" | make test
+  - sh test-report.sh
+  - php -r 'echo nano\second() . PHP_EOL;'
+  - php -r 'echo nano\time() . PHP_EOL;'
 
 notifications:
   email:
-    - lars@strojny.net
+    recipients:
+      - lars@strojny.net
+    on_success: change
+    on_failure: always

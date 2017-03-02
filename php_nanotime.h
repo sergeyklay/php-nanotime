@@ -8,7 +8,11 @@
 #include <php.h>
 
 #ifdef HAVE_NANOTIME
-#define PHP_NANOTIME_VERSION "0.0.1-dev"
+
+#define PHP_NANOTIME_NAME "nanotime"
+#define PHP_NANOTIME_VERSION "1.0.0"
+#define PHP_NANOTIME_AUTHOR "The nanotime team and contributors"
+#define PHP_NANOTIME_DESCRIPTION "PHP bindings for libnanotime for nanosecond precision timestamps."
 
 PHP_MINFO_FUNCTION(nanotime);
 PHP_FUNCTION(nanotime_second);
