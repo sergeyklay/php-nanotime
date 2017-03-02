@@ -54,6 +54,6 @@ script:
 notifications:
   email:
     recipients:
-      - lars@strojny.net
+      - serghei@phalconphp.com
     on_success: change
     on_failure: always
