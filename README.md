@@ -1,7 +1,6 @@
-# php-nanotime
+# The nanotime
 
 [![Build Status](https://secure.travis-ci.org/sergeyklay/php-nanotime.svg)](http://travis-ci.org/sergeyklay/php-nanotime)
-
 
 PHP bindings for [libnanotime](https://github.com/lstrojny/nanotime.git) for nanosecond precision timestamps.
 
@@ -13,9 +12,7 @@ Supported PHP versions:
 - **7.0**
 - **7.1**
 
-
-Usage
------
+## Usage
 
 ```php
 # PHP 7 example
@@ -28,8 +25,8 @@ $currentNanoSecond = nanosecond(); // int(1381843170058990080)
 $currentTimestampWithNanoSecondPrecision = nanotime(); // float(1381843170.059027910232543945312)
 ```
 
-License
--------
-php-nanotime is open source software licensed under the MIT License. See the LICENSE file for more.<br>
+## License
+
+The nanotime is open source software licensed under the MIT License. See the LICENSE file for more.<br>
 Copyright (c) 2013 Lars Strojny<br>
 Copyright (c) 2017 Serghei Iakovlev<br>
