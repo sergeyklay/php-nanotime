@@ -33,9 +33,15 @@ ZEND_GET_MODULE(nanotime)
 
 PHP_MINFO_FUNCTION(nanotime)
 {
-	php_printf("The nanoetime extension\n");
+	php_info_print_box_start(0);
+	php_printf("%s", PHP_NANOTIME_DESCRIPTION);
+	php_info_print_box_end();
+
 	php_info_print_table_start();
+	php_info_print_table_header(2, PHP_NANOTIME_NAME, "enabled");
+	php_info_print_table_row(2, "Author", PHP_NANOTIME_AUTHOR);
 	php_info_print_table_row(2, "Version", PHP_NANOTIME_VERSION);
+	php_info_print_table_row(2, "Build Date", __DATE__ " " __TIME__);
 	php_info_print_table_end();
 }
 
