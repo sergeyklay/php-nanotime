@@ -23,7 +23,7 @@ zend_module_entry nanotime_module_entry = {
 	NULL,
 	NULL,
 	PHP_MINFO(nanotime),
-	PHP_NANOTIME_VERSION, 
+	PHP_NANOTIME_VERSION,
 	STANDARD_MODULE_PROPERTIES
 };
 

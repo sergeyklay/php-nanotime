@@ -1,5 +1,5 @@
 PHP_ARG_ENABLE(nanotime, enable nanotime PHP extension,
-[  --enable-nanotime Enable Functional PHP])
+[  --enable-nanotime Enable nanotime PHP extension])
 
 if test -z "$PHP_LIBNANOTIME_PREFIX"; then
     PHP_ARG_WITH(libnanotime-prefix, libcld install prefix,
@@ -17,5 +17,5 @@ if test "$PHP_NANOTIME" != "no"; then
     PHP_ADD_LIBRARY_WITH_PATH(nanotime-1.0.0, PHP_LIBNANOTIME_PREFIX/lib, NANOTIME_SHARED_LIBADD)
 
     PHP_NEW_EXTENSION(nanotime, nanotime.c, $ext_shared)
-    CFLAGS="$CFLAGS -Wall -g -O0 -pedantic"
+    CFLAGS="$CFLAGS -Wall -g -O2 -pedantic"
 fi
