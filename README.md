@@ -15,7 +15,7 @@ Supported PHP versions:
 ## Usage
 
 ```php
-# PHP 7 example
+# PHP 7.x example
 use function nano\{
     second as nanosecond,
     time as nanotime
