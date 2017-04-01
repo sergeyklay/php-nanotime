@@ -11,6 +11,12 @@ Supported PHP versions:
 - **5.6**
 - **7.0**
 - **7.1**
+- **7.2**
+
+Supported OS:
+
+- Linux
+- macOS
 
 ## Usage
 
